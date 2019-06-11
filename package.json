@@ -1,0 +1,32 @@
+{
+  "name": "copigom",
+  "version": "1.2.5",
+  "description": "Beautiful Platformer PhaseJS Game",
+  "devDependencies": {
+    "expose-loader": "0.7.5",
+    "gh-pages": "^2.0.1",
+    "ts-loader": "6.0.0",
+    "typescript": "3.4.5",
+    "webpack": "4.31.0",
+    "webpack-cli": "3.3.2",
+    "webpack-dev-server": "3.3.1"
+  },
+  "dependencies": {
+    "phaser": "3.16.2"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d .",
+    "dev": "webpack --mode development && webpack-dev-server --mode development",
+    "build": "webpack --mode production && webpack-dev-server --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serranoarevalo/copigom"
+  },
+  "author": {
+    "name": "Nicolás Serrano Arévalo",
+    "email": "nico@nomadcoders.co"
+  },
+  "license": "ISC",
+  "homepage": "https://github.com/serranoarevalo/copigom#readme"
+}
