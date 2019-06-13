@@ -3,11 +3,10 @@ import { MainScene } from "./scenes/mainScene";
 
 // main game configuration
 const config: GameConfig = {
-  width: window.innerWidth / 2,
-  height: window.innerHeight / 1.75,
-  type: Phaser.WEBGL,
-  parent: "game",
+  type: Phaser.CANVAS,
   scene: MainScene,
+  width: window.innerWidth,
+  height: window.innerHeight,
   physics: {
     default: "arcade",
     arcade: {

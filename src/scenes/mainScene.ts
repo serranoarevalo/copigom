@@ -29,18 +29,17 @@ export class MainScene extends Phaser.Scene {
       0,
       "sky"
     );
-    this.background.setScale(0.8);
+    this.background.setScale(1, 1.5);
     this.clouds = this.add.tileSprite(
       this.game.canvas.width / 2,
-      100,
+      200,
       0,
       0,
       "clouds"
     );
-
     this.mountain = this.add.tileSprite(
       this.game.canvas.width / 2,
-      230,
+      this.game.canvas.height - 315,
       0,
       0,
       "mountain"
@@ -48,14 +47,14 @@ export class MainScene extends Phaser.Scene {
 
     this.fog = this.add.tileSprite(
       this.game.canvas.width / 2,
-      310,
+      this.game.canvas.height - 220,
       0,
       0,
       "fog"
     );
     this.trees = this.add.tileSprite(
       this.game.canvas.width / 2,
-      200,
+      this.game.canvas.height - 320,
       0,
       0,
       "trees"
@@ -63,7 +62,7 @@ export class MainScene extends Phaser.Scene {
     this.trees.setScale(0.75);
     this.floor = this.add.tileSprite(
       this.game.canvas.width / 2,
-      this.game.canvas.height - 70,
+      this.game.canvas.height - 50,
       0,
       0,
       "ground"
