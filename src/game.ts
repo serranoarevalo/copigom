@@ -5,8 +5,8 @@ import { MainScene } from "./scenes/mainScene";
 const config: GameConfig = {
   type: Phaser.CANVAS,
   scene: MainScene,
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: "100%",
+  height: "100%",
   physics: {
     default: "arcade",
     arcade: {

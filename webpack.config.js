@@ -8,6 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
+  performance: {
+    hints: false
+  },
   module: {
     rules: [
       { test: /\.ts$/, loader: "ts-loader", exclude: "/node_modules/" },
