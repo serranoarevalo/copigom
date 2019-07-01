@@ -1,3 +1,6 @@
+const SPRITE_WIDTH = 220;
+const SPRITE_HEIGHT = 274;
+
 export class MainScene extends Phaser.Scene {
   private floor: Phaser.GameObjects.TileSprite;
   private background: Phaser.GameObjects.TileSprite;
@@ -5,6 +8,9 @@ export class MainScene extends Phaser.Scene {
   private mountain: Phaser.GameObjects.TileSprite;
   private fog: Phaser.GameObjects.TileSprite;
   private trees: Phaser.GameObjects.TileSprite;
+  private floorRectangle: Phaser.GameObjects.Rectangle;
+  private floorBox: Phaser.GameObjects.GameObject;
+  private player: Phaser.Physics.Arcade.Sprite;
 
   constructor() {
     super({
@@ -19,6 +25,15 @@ export class MainScene extends Phaser.Scene {
     this.load.image("mountain", "./src/assets/mountain.png");
     this.load.image("sky", "./src/assets/sky.png");
     this.load.image("trees", "./src/assets/trees.png");
+    this.load.spritesheet("bearRun", "./src/assets/bear_run.png", {
+      frameWidth: SPRITE_WIDTH,
+      frameHeight: SPRITE_HEIGHT,
+      spacing: 80
+    });
+    this.load.spritesheet("bearJump", "./src/assets/bear_jump.png", {
+      frameWidth: 32,
+      frameHeight: 48
+    });
   }
 
   create(): void {
@@ -39,7 +54,7 @@ export class MainScene extends Phaser.Scene {
     );
     this.mountain = this.add.tileSprite(
       this.game.canvas.width / 2,
-      this.game.canvas.height - 315,
+      this.game.canvas.height - 250,
       0,
       0,
       "mountain"
@@ -47,14 +62,14 @@ export class MainScene extends Phaser.Scene {
 
     this.fog = this.add.tileSprite(
       this.game.canvas.width / 2,
-      this.game.canvas.height - 220,
+      this.game.canvas.height - 180,
       0,
       0,
       "fog"
     );
     this.trees = this.add.tileSprite(
       this.game.canvas.width / 2,
-      this.game.canvas.height - 320,
+      this.game.canvas.height - 280,
       0,
       0,
       "trees"
@@ -62,19 +77,42 @@ export class MainScene extends Phaser.Scene {
     this.trees.setScale(0.75);
     this.floor = this.add.tileSprite(
       this.game.canvas.width / 2,
-      this.game.canvas.height - 50,
+      this.game.canvas.height,
       0,
       0,
       "ground"
     );
+    this.floorRectangle = this.add.rectangle(
+      this.game.canvas.width / 2,
+      this.game.canvas.height - 80,
+      this.game.canvas.width,
+      10
+    );
+    this.floorBox = this.physics.add.existing(this.floorRectangle);
+    this.floorBox.body.allowGravity = false;
+    this.floorBox.body.setImmovable(true);
+    this.player = this.physics.add.sprite(
+      200,
+      this.floorRectangle.y - 78,
+      "bearRun"
+    );
+    this.player.setScale(0.5);
+    this.physics.add.collider(this.floorBox, this.player);
+    this.anims.create({
+      key: "run",
+      frames: this.anims.generateFrameNumbers("bearRun", { start: 0, end: 8 }),
+      frameRate: 8,
+      repeat: -1
+    });
   }
 
   update(): void {
-    this.floor.tilePositionX += 2;
+    this.floor.tilePositionX += 3;
     this.background.tilePositionX += 0.1;
     this.clouds.tilePositionX += 1;
     this.mountain.tilePositionX += 0.2;
     this.fog.tilePositionX += 0.1;
     this.trees.tilePositionX += 0.5;
+    this.player.anims.play("run", true);
   }
 }
