@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxLayer : MonoBehaviour
+public class Parallax : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed = 0.5f;
+    Renderer element;
     void Start()
     {
-
+        element = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 offset = new Vector2(Time.time * speed, 0);
-        GetComponent<Renderer>().material.mainTextureOffset = offset;
+        element.material.mainTextureOffset += new Vector2(Time.deltaTime * speed, 0);
     }
 
 }
