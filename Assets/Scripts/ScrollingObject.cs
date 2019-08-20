@@ -27,7 +27,7 @@ public class ScrollingObject : MonoBehaviour
         {
             Reposition();
         }
-        rigidbody.velocity = new Vector2(speed - GameController.instance.currentSpeed, 0);
+        rigidbody.velocity = new Vector2(speed - GameController.instance.currentSpeed / 5, 0);
     }
 
     void Reposition()
