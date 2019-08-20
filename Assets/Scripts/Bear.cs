@@ -5,16 +5,21 @@ using UnityEngine;
 public class Bear : MonoBehaviour
 {
 
-    public float yForce = 500f;
-    private bool isDead = false;
+    public float yForce;
+    private bool isDead;
     private new Rigidbody2D rigidbody;
     private Animator animator;
 
-    private bool canJump = true;
+    private bool canJump;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        yForce = 500f;
+        isDead = false;
+        canJump = true;
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -22,7 +27,7 @@ public class Bear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        animator.speed = 1f + GameController.instance.currentSpeed / 100;
         if (isDead == false && canJump == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -31,7 +36,6 @@ public class Bear : MonoBehaviour
                 rigidbody.velocity = Vector2.zero;
                 rigidbody.AddForce(new Vector2(0, yForce));
                 canJump = false;
-
             }
         }
 

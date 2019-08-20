@@ -16,6 +16,8 @@ public class ScrollingObject : MonoBehaviour
         rigidbody.velocity = new Vector2(speed, 0);
         objectCollider = GetComponent<BoxCollider2D>();
         objectWidth = objectCollider.size.x;
+
+
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class ScrollingObject : MonoBehaviour
         {
             Reposition();
         }
+        rigidbody.velocity = new Vector2(speed - GameController.instance.currentSpeed, 0);
     }
 
     void Reposition()
